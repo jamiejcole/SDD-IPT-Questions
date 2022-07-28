@@ -2,4 +2,9 @@
 
 body {
     font-family: 'Lekton', sans-serif;
+    text-align: center;
+}
+
+input, label, p {
+    font-size: 18px;
 }
