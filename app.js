@@ -48,8 +48,15 @@ const dataSDDMarking = {
 
 function submitForm () {
     let year = document.getElementById("year").value;
-    console.log(year);
-    let url = dataSDD[year];
+    let qa = document.querySelector('input[name="qa"]:checked').value;
+    console.log(year, qa);
+    let url = "";
+    if (qa === "Questions") {
+        url = dataSDDQuestions[year];
+    }
+    else {
+        url = dataSDDMarking[year];
+    }
     window.open(url);
 }
 
