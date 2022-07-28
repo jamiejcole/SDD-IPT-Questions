@@ -98,8 +98,25 @@ function submitForm () {
     let subject = document.querySelector('input[name="subject"]:checked').value;
     let year = document.getElementById("year").value;
     let qa = document.querySelector('input[name="qa"]:checked').value;
+    let num = document.getElementById('num').value;
+
     console.log(year, qa);
+
     let url = "";
+    let urlSuffix = "";
+
+    if (num.length <= 0) {
+        console.log("empty");
+    }
+    else {
+        if (num <=20 ) {
+            urlSuffix = num.toString();
+        }
+        else {
+            urlSuffix = "Question " + num.toString();
+        }
+    }
+
     if (subject === "SDD") {
         if (qa === "Questions") {
             url = dataSDDQuestions[year];
@@ -117,10 +134,25 @@ function submitForm () {
         }
     }
     
-    window.open(url);
+    if (num.length <= 0) {
+        window.open(url);
+    }
+    else {
+        window.open(url + "#" + urlSuffix);
+    }
+    
 }
 
 document.getElementById("year")
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        submitForm();
+    }
+});
+
+
+document.getElementById("num")
     .addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.keyCode === 13) {
